@@ -17,7 +17,7 @@ async function fetchQuestions() {
 
 function showQuestion() {
   /* get and create needed elements */
-  const container = document.querySelector("#question-container");
+  document.getElementById("title-screen-container").style.display = "none";
   const question = document.querySelector(".question");
   const answersDiv = document.querySelector(".answers-container");
 
