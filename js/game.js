@@ -1,29 +1,15 @@
-let triviaData = [];
 let questionIndex = 0;
 let answers = [];
 let questionNumber = 1;
 let points = 0;
 
-async function fetchQuestions() {
-  questionNumber = 1;
-  points = 0;
-  questionIndex = 0;
-  const res = await fetch(
-    "https://opentdb.com/api.php?amount=50&type=multiple"
-  );
-  const data = await res.json();
-
-  triviaData = data.results.slice(0, 10);
-
-  console.log(triviaData);
-}
-
 function showQuestion() {
+  /* hide and show containers accordingly */
   document.querySelector("#question-container").style.display = "flex";
   document.querySelector("#results-container").style.display = "none";
   document.getElementById("title-screen-container").style.display = "none";
 
-  console.log(questionNumber);
+  /* if we've had 10 questions, go to results */
   if (questionNumber === 11) {
     showResults();
     return;
@@ -60,21 +46,6 @@ function showQuestion() {
   }
 
   question.textContent = decodeHTML(triviaData[questionIndex].question);
-}
-
-function shuffle(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-  return array;
-}
-
-/* to get rid of the weird symbols in questions and answers */
-function decodeHTML(text) {
-  const temp = document.createElement("textarea");
-  temp.innerHTML = text;
-  return temp.value;
 }
 
 function checkAnswer(element) {
