@@ -21,6 +21,7 @@
 
     <div id="question-container">
       <p>Number of question: <span class="question-number"></span> out of 10</p>
+      <p>Points: <span class="points"></span></p>
       <p class="question"></p>
       <div class="answers-container"></div>
       <p class="user-choice"></p>
@@ -29,7 +30,11 @@
       </button>
     </div>
 
-    <div id="results-container"></div>
+    <div id="results-container">
+      <h1>You're done!</h1>
+      <p>Your final points: <span class="final-points"></span></p>
+      <button class="to-homepage" onclick="toHomepage()">Go to home</button>
+    </div>
 
     <script src="js/script.js"></script>
   </body>

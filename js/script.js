@@ -2,6 +2,7 @@ let triviaData = [];
 let questionIndex = 0;
 let answers = [];
 let questionNumber = 1;
+let points = 0;
 
 async function fetchQuestions() {
   const res = await fetch(
@@ -23,6 +24,7 @@ function showQuestion() {
   }
   /* get and create needed elements */
   document.querySelector(".user-choice").textContent = "";
+  document.querySelector(".points").textContent = points;
   document.querySelector(".continue-button").setAttribute("hidden", "hidden");
   document.getElementById("title-screen-container").style.display = "none";
   document.querySelector(".question-number").textContent = questionNumber;
@@ -76,9 +78,13 @@ function checkAnswer(element) {
 
   if (triviaData[questionIndex].correct_answer === userChoice) {
     document.querySelector(".user-choice").textContent = "Correct answer!";
+    points += 100;
+    document.querySelector(".points").textContent = points;
     console.log("correct answer");
   } else {
     document.querySelector(".user-choice").textContent = "Wrong answer!";
+    points -= 50;
+    document.querySelector(".points").textContent = points;
     console.log("incorrect answer");
   }
 
@@ -87,8 +93,13 @@ function checkAnswer(element) {
 }
 
 function showResults() {
-  console.log("made it!!!!");
   document.querySelector("#question-container").style.display = "none";
+  document.querySelector(".final-points").textContent = points;
+}
+
+function toHomepage() {
+  document.querySelector("#results-container").style.display = "none";
+  document.querySelector("#title-screen-container").removeAttribute("style");
 }
 
 // Fetch on page load
