@@ -38,14 +38,13 @@ function showQuestion() {
   /* put info inside HTML */
   for (i = 0; i < 4; i++) {
     const answer = document.createElement("p");
+    answer.setAttribute("onClick", "checkAnswer(this)");
     answer.textContent = decodeHTML(answers[i]);
 
     answersDiv.appendChild(answer);
   }
 
   question.textContent = decodeHTML(triviaData[questionIndex].question);
-
-  questionIndex++;
 }
 
 function shuffle(array) {
@@ -61,6 +60,17 @@ function decodeHTML(text) {
   const temp = document.createElement("textarea");
   temp.innerHTML = text;
   return temp.value;
+}
+
+function checkAnswer(element) {
+  const userChoice = element.textContent;
+
+  if (triviaData[questionIndex].correct_answer === userChoice) {
+    /* do something */
+    console.log("correct answer");
+  } else {
+    console.log("incorrect answer");
+  }
 }
 
 // Fetch on page load
