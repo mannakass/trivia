@@ -1,0 +1,60 @@
+let triviaData = [];
+let questionIndex = 0;
+let answers = [];
+
+async function fetchQuestions() {
+  const res = await fetch(
+    "https://opentdb.com/api.php?amount=50&type=multiple"
+  );
+  const data = await res.json();
+
+  for (i = 0; i < 10; i++) {
+    triviaData = data.results.slice(0, 10);
+  }
+
+  console.log(triviaData);
+}
+
+function showQuestion() {
+  /* get and create needed elements */
+  const container = document.querySelector("#question-container");
+  const question = document.querySelector(".question");
+  const answersDiv = document.querySelector(".answers-container");
+
+  /* clear data */
+  answers = [];
+  question.textContent = "";
+  answersDiv.innerHTML = "";
+
+  /* push answers into array */
+  answers = [
+    triviaData[questionIndex].correct_answer,
+    ...triviaData[questionIndex].incorrect_answers,
+  ];
+
+  /* shuffle answers */
+  shuffle(answers);
+
+  /* put info inside HTML */
+  for (i = 0; i < 4; i++) {
+    const answer = document.createElement("p");
+    answer.textContent = answers[i];
+    answersDiv.appendChild(answer);
+  }
+
+  question.textContent = triviaData[questionIndex].question;
+  container.appendChild(question);
+
+  questionIndex++;
+}
+
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+// Fetch on page load
+fetchQuestions();

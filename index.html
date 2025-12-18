@@ -5,8 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Trivia</title>
   </head>
-  <h1>Trivia game</h1>
+
   <body>
+    <div id="title-screen-container">
+      <header>
+        <h1>Epic trivia game</h1>
+        <p>Test your general knowledge</p>
+      </header>
+      <main>
+        <h2>Choose your game mode</h2>
+        <button onclick="showQuestion()">Choose me!</button>
+      </main>
+    </div>
+
+    <div id="question-container">
+      <p class="question"></p>
+      <div class="answers-container"></div>
+    </div>
+
+    <div id="results-container"></div>
+
     <script src="js/script.js"></script>
   </body>
 </html>
