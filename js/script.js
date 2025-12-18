@@ -38,12 +38,12 @@ function showQuestion() {
   /* put info inside HTML */
   for (i = 0; i < 4; i++) {
     const answer = document.createElement("p");
-    answer.textContent = answers[i];
+    answer.textContent = decodeHTML(answers[i]);
+
     answersDiv.appendChild(answer);
   }
 
-  question.textContent = triviaData[questionIndex].question;
-  container.appendChild(question);
+  question.textContent = decodeHTML(triviaData[questionIndex].question);
 
   questionIndex++;
 }
@@ -54,6 +54,13 @@ function shuffle(array) {
     [array[i], array[j]] = [array[j], array[i]];
   }
   return array;
+}
+
+/* to get rid of the weird symbols in questions and answers */
+function decodeHTML(text) {
+  const temp = document.createElement("textarea");
+  temp.innerHTML = text;
+  return temp.value;
 }
 
 // Fetch on page load
