@@ -1,6 +1,7 @@
 let triviaData = [];
 let questionIndex = 0;
 let answers = [];
+let questionNumber = 1;
 
 async function fetchQuestions() {
   const res = await fetch(
@@ -18,6 +19,7 @@ async function fetchQuestions() {
 function showQuestion() {
   /* get and create needed elements */
   document.getElementById("title-screen-container").style.display = "none";
+  document.querySelector(".question-number").textContent = questionNumber;
   const question = document.querySelector(".question");
   const answersDiv = document.querySelector(".answers-container");
 
@@ -64,13 +66,16 @@ function decodeHTML(text) {
 
 function checkAnswer(element) {
   const userChoice = element.textContent;
+  document.querySelector(".continue-button").removeAttribute("hidden");
 
   if (triviaData[questionIndex].correct_answer === userChoice) {
-    /* do something */
     console.log("correct answer");
   } else {
     console.log("incorrect answer");
   }
+
+  questionIndex++;
+  questionNumber++;
 }
 
 // Fetch on page load
