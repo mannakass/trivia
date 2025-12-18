@@ -5,28 +5,33 @@ let questionNumber = 1;
 let points = 0;
 
 async function fetchQuestions() {
+  questionNumber = 1;
+  points = 0;
+  questionIndex = 0;
   const res = await fetch(
     "https://opentdb.com/api.php?amount=50&type=multiple"
   );
   const data = await res.json();
 
-  for (i = 0; i < 10; i++) {
-    triviaData = data.results.slice(0, 10);
-  }
+  triviaData = data.results.slice(0, 10);
 
   console.log(triviaData);
 }
 
 function showQuestion() {
+  document.querySelector("#question-container").style.display = "flex";
+  document.querySelector("#results-container").style.display = "none";
+  document.getElementById("title-screen-container").style.display = "none";
+
   console.log(questionNumber);
   if (questionNumber === 11) {
     showResults();
+    return;
   }
   /* get and create needed elements */
   document.querySelector(".user-choice").textContent = "";
   document.querySelector(".points").textContent = points;
   document.querySelector(".continue-button").setAttribute("hidden", "hidden");
-  document.getElementById("title-screen-container").style.display = "none";
   document.querySelector(".question-number").textContent = questionNumber;
   const question = document.querySelector(".question");
   const answersDiv = document.querySelector(".answers-container");
@@ -94,12 +99,16 @@ function checkAnswer(element) {
 
 function showResults() {
   document.querySelector("#question-container").style.display = "none";
+  document.querySelector("#results-container").style.display = "flex";
+  document.getElementById("title-screen-container").style.display = "none";
   document.querySelector(".final-points").textContent = points;
 }
 
 function toHomepage() {
+  document.querySelector("#question-container").style.display = "none";
   document.querySelector("#results-container").style.display = "none";
-  document.querySelector("#title-screen-container").removeAttribute("style");
+  document.getElementById("title-screen-container").style.display = "flex";
+  fetchQuestions();
 }
 
 // Fetch on page load

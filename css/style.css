@@ -36,7 +36,7 @@ main {
 #question-container {
   width: 100vw;
   height: 100vh;
-  display: flex;
+  display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -50,7 +50,7 @@ main {
 #results-container {
   width: 100vw;
   height: 100vh;
-  display: flex;
+  display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
