@@ -17,7 +17,13 @@ async function fetchQuestions() {
 }
 
 function showQuestion() {
+  console.log(questionNumber);
+  if (questionNumber === 11) {
+    showResults();
+  }
   /* get and create needed elements */
+  document.querySelector(".user-choice").textContent = "";
+  document.querySelector(".continue-button").setAttribute("hidden", "hidden");
   document.getElementById("title-screen-container").style.display = "none";
   document.querySelector(".question-number").textContent = questionNumber;
   const question = document.querySelector(".question");
@@ -69,13 +75,20 @@ function checkAnswer(element) {
   document.querySelector(".continue-button").removeAttribute("hidden");
 
   if (triviaData[questionIndex].correct_answer === userChoice) {
+    document.querySelector(".user-choice").textContent = "Correct answer!";
     console.log("correct answer");
   } else {
+    document.querySelector(".user-choice").textContent = "Wrong answer!";
     console.log("incorrect answer");
   }
 
   questionIndex++;
   questionNumber++;
+}
+
+function showResults() {
+  console.log("made it!!!!");
+  document.querySelector("#question-container").style.display = "none";
 }
 
 // Fetch on page load
