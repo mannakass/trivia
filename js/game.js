@@ -16,6 +16,7 @@ function showQuestion() {
   }
   /* get and create needed elements */
   document.querySelector(".user-choice").textContent = "";
+  document.querySelector(".real-answer").textContent = "";
   document.querySelector(".points").textContent = points;
   document.querySelector(".continue-button").setAttribute("hidden", "hidden");
   document.querySelector(".question-number").textContent = questionNumber;
@@ -59,6 +60,9 @@ function checkAnswer(element) {
     console.log("correct answer");
   } else {
     document.querySelector(".user-choice").textContent = "Wrong answer!";
+    document.querySelector(".real-answer").textContent =
+      "Correct answer is: " + triviaData[questionIndex].correct_answer;
+    triviaData[questionIndex].correct_answer;
     points -= 50;
     document.querySelector(".points").textContent = points;
     console.log("incorrect answer");
