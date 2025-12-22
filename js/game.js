@@ -16,9 +16,14 @@ function showQuestion() {
   document.querySelector("#results-container").style.display = "none";
   document.getElementById("title-screen-container").style.display = "none";
 
+  if (questionNumber === 10) {
+    document.querySelector(".continue-button").textContent = "Finish";
+  }
+
   /* if we've had 10 questions, go to results */
   if (questionNumber === 11) {
     showResults();
+    document.querySelector(".continue-button").textContent = "Next question";
     return;
   }
 
