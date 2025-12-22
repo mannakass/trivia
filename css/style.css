@@ -1,12 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap");
+
 * {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
+  font-family: "Cormorant Garamond", serif;
   background-color: white;
-  color: black;
+  color: #2a2a2a;
+  overflow: hidden;
 }
 
+/* ========== LAYERS (botanical images) ========== */
 .layer {
   position: absolute;
   pointer-events: none;
@@ -41,17 +48,6 @@ body {
   transition: opacity 0.8s ease;
 }
 
-.layer-arch {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-  height: fit-content;
-  z-index: -1;
-}
-
 .title-content h1 {
   font-size: 4rem;
   font-weight: 400;
@@ -84,15 +80,28 @@ body {
 
 .enter-btn:hover {
   background: #2a2a2a;
-  color: #f4f1eb;
+  color: #f9f8f4;
 }
 
-/* Menu hidden by default */
+/* ========== ARCH ========== */
+.layer-arch {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  height: fit-content;
+  z-index: -1;
+  transition: transform 2s ease;
+}
+
+/* ========== MENU (hidden by default) ========== */
 #title-screen-container {
   opacity: 0;
   pointer-events: none;
   transition: opacity 1s ease;
-  transition-delay: 2s; /* waits for botanicals to move first */
+  transition-delay: 1.5s;
 }
 
 /* Menu appears when opened */
@@ -111,10 +120,11 @@ body {
   pointer-events: none;
 }
 
+/* Arch scales up */
 .intro-container.opened .layer-arch {
   transform: scale(1.5);
-  transition: transform 2s ease;
 }
+
 /* Left images slide left */
 .intro-container.opened .lill-7 {
   transform: translateX(-5%) rotate(-5deg);
@@ -152,66 +162,285 @@ body {
   transition-delay: 0.15s;
 }
 
+/* ========== INTRO CONTAINER ========== */
 .intro-container {
-  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  z-index: 1;
 }
 
+/* ========== TITLE SCREEN CONTAINER (game modes) ========== */
 #title-screen-container {
-  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 2rem;
+  z-index: 20;
 }
 
-header {
+#title-screen-container h2 {
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  opacity: 0.5;
+}
+
+#title-screen-container main {
   display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+#title-screen-container button {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.2rem;
+  letter-spacing: 0.15em;
+  padding: 0.9rem 2.5rem;
+  background: transparent;
+  border: 1px solid #2a2a2a;
+  color: #2a2a2a;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 220px;
+}
+
+#title-screen-container button:hover {
+  background: #2a2a2a;
+  color: #f9f8f4;
+}
+
+/* ==========================================================
+   QUESTION CONTAINER
+   ========================================================== */
+#question-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 0.5rem;
+  gap: 2rem;
+  z-index: 50;
+  background: transparent;
+  padding: 2rem;
 }
 
-main {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
+/* Question number and points */
+#question-container > p:first-child,
+#question-container > p:nth-child(2) {
+  font-size: 0.9rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.5;
 }
 
+.question-number,
+.points {
+  font-weight: 600;
+  opacity: 1;
+}
+
+/* The question itself */
+.question {
+  font-size: 1.8rem;
+  font-weight: 400;
+  text-align: center;
+  max-width: 700px;
+  line-height: 1.4;
+  color: #2a2a2a;
+}
+
+/* Answer buttons container */
 .answers-container {
   display: flex;
-  gap: 3rem;
-}
-
-#question-container {
-  width: 100vw;
-  height: 100vh;
-  display: none;
-  flex-direction: column;
+  flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
   gap: 1rem;
+  max-width: 800px;
 }
 
-.question {
-  font-weight: bold;
+/* Individual answer buttons */
+.answer-option {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  padding: 1rem 1.8rem;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid #2a2a2a;
+  color: #2a2a2a;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 180px;
+  text-align: center;
 }
 
+.answer-option:hover {
+  background: #2a2a2a;
+  color: #f9f8f4;
+  transform: translateY(-2px);
+}
+
+/* Feedback messages */
+.user-choice {
+  font-size: 1.3rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  min-height: 1.5rem;
+}
+
+.user-choice:empty {
+  display: none;
+}
+
+.real-answer {
+  font-size: 1rem;
+  font-style: italic;
+  opacity: 0.7;
+  min-height: 1.2rem;
+}
+
+.real-answer:empty {
+  display: none;
+}
+
+/* Continue / Next question button */
+.continue-button {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  padding: 1rem 2.5rem;
+  background: transparent;
+  border: 1px solid #2a2a2a;
+  color: #2a2a2a;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  margin-top: 1rem;
+}
+
+.continue-button:hover {
+  background: #2a2a2a;
+  color: #f9f8f4;
+}
+
+.continue-button[hidden] {
+  display: none;
+}
+
+/* ==========================================================
+   RESULTS CONTAINER
+   ========================================================== */
 #results-container {
-  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 100vh;
   display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
+  gap: 1.5rem;
+  z-index: 50;
+  background: transparent;
+}
+
+#results-container h1 {
+  font-size: 3rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: #2a2a2a;
+}
+
+#results-container p {
+  font-size: 1.4rem;
+  letter-spacing: 0.1em;
+  color: #2a2a2a;
+}
+
+.final-points {
+  font-weight: 600;
+  font-size: 1.6rem;
+}
+
+.to-homepage {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  padding: 1rem 2.5rem;
+  background: transparent;
+  border: 1px solid #2a2a2a;
+  color: #2a2a2a;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  margin-top: 1rem;
+}
+
+.to-homepage:hover {
+  background: #2a2a2a;
+  color: #f9f8f4;
+}
+
+/* Fix feedback pushing question up */
+.user-choice,
+.real-answer,
+.continue-button {
+  position: absolute;
+}
+
+.user-choice {
+  bottom: 180px;
+}
+
+.real-answer {
+  bottom: 140px;
+}
+
+.continue-button {
+  bottom: 80px;
+}
+
+/* Correct answer styling */
+.answer-option.correct {
+  background: #d4edda;
+  border: 2px solid #28a745;
+  color: #155724;
+}
+
+.answer-option.correct::before {
+  content: "✓ ";
+}
+
+/* Wrong answer styling */
+.answer-option.wrong {
+  background: #f8d7da;
+  border: 2px solid #dc3545;
+  color: #721c24;
+}
+
+.answer-option.wrong::before {
+  content: "✗ ";
+}
+
+/* Dim other answers after selection */
+.answer-option.dimmed {
+  opacity: 0.4;
 }

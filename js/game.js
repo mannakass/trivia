@@ -15,6 +15,8 @@ function closeGarden() {
 }
 
 async function startGame(difficulty) {
+  document.getElementById("title-screen-container").style.display = "none";
+
   await fetchQuestions(difficulty);
   showQuestion();
 }
@@ -23,7 +25,6 @@ function showQuestion() {
   /* hide and show containers accordingly */
   document.querySelector("#question-container").style.display = "flex";
   document.querySelector("#results-container").style.display = "none";
-  document.getElementById("title-screen-container").style.display = "none";
 
   if (questionNumber === 10) {
     document.querySelector(".continue-button").textContent = "Finish";
@@ -75,27 +76,36 @@ function showQuestion() {
 
 function checkAnswer(element) {
   const userChoice = element.textContent;
-  document.querySelector(".continue-button").removeAttribute("hidden");
-  console.log(document.querySelectorAll(".answer-option"));
+  const correctAnswer = decodeHTML(triviaData[questionIndex].correct_answer);
 
-  /* remove the option to click on any other answer after you're already clicked on sth */
+  document.querySelector(".continue-button").removeAttribute("hidden");
+
+  // Remove click from all answers
   document.querySelectorAll(".answer-option").forEach((el) => {
     el.removeAttribute("onclick");
+    el.classList.add("dimmed");
   });
 
-  /* If answer is correct */
-  if (decodeHTML(triviaData[questionIndex].correct_answer) === userChoice) {
-    document.querySelector(".user-choice").textContent = "Correct answer!";
+  // Find and highlight correct answer
+  document.querySelectorAll(".answer-option").forEach((el) => {
+    if (el.textContent === correctAnswer) {
+      el.classList.remove("dimmed");
+      el.classList.add("correct");
+    }
+  });
+
+  // Check if user was right or wrong
+  if (correctAnswer === userChoice) {
+    /*     document.querySelector(".user-choice").textContent = "Correct!"; */
     points += 100;
     document.querySelector(".points").textContent = points;
     console.log("correct answer");
-    /* If answer is not correct */
   } else {
-    document.querySelector(".user-choice").textContent = "Wrong answer!";
+    element.classList.remove("dimmed");
+    element.classList.add("wrong");
+    /*     document.querySelector(".user-choice").textContent = "Wrong!";
     document.querySelector(".real-answer").textContent =
-      "Correct answer is: " +
-      decodeHTML(triviaData[questionIndex].correct_answer);
-    //triviaData[questionIndex].correct_answer;
+      "Correct answer: " + correctAnswer; */
     points -= 50;
     document.querySelector(".points").textContent = points;
     console.log("incorrect answer");
