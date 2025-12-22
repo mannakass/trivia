@@ -428,3 +428,82 @@ body {
   background: #2a2a2a;
   color: #f9f8f4;
 }
+
+/* ==========================================================
+   MOBILE LAYOUT
+   ========================================================== */
+.mobile-layer {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  /* Hide desktop images */
+  .lill-1,
+  .lill-2,
+  .lill-3,
+  .lill-4,
+  .lill-5,
+  .lill-6,
+  .lill-7,
+  .layer-arch {
+    display: none;
+  }
+
+  /* Show mobile images */
+  .mobile-layer {
+    display: block;
+    position: absolute;
+    pointer-events: none;
+    transition: transform 2s ease, opacity 1.2s ease;
+  }
+
+  /* Position each mobile image - adjust these values */
+  .mobile-gate {
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    z-index: -1;
+  }
+
+  .mobile-lill1 {
+    top: 0;
+    left: 0;
+  }
+
+  .mobile-lill2 {
+    bottom: 0;
+    left: 0;
+  }
+
+  .mobile-lill3 {
+    bottom: 0;
+    left: 0;
+  }
+
+  .mobile-lill4 {
+    bottom: 0;
+    right: 0;
+  }
+
+  /* Mobile opened state */
+  .intro-container.opened .mobile-lill1 {
+    transform: translate(-10%, -5%) rotate(-10deg) scale(1.4);
+  }
+
+  .intro-container.opened .mobile-lill2 {
+    transform: translate(-15%, 5%) rotate(15deg) scale(1.6);
+  }
+
+  .intro-container.opened .mobile-lill3 {
+    transform: translate(-15%, 5%) rotate(15deg) scale(1.6);
+  }
+
+  .intro-container.opened .mobile-lill4 {
+    transform: translate(5%, 0%) rotate(-10deg) scale(1.6);
+  }
+
+  .intro-container.opened .mobile-gate {
+    transform: translateX(-50%) scale(1.3);
+  }
+}
