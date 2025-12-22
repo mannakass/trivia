@@ -53,7 +53,7 @@ function showQuestion() {
 
   /* put info inside HTML */
   for (i = 0; i < 4; i++) {
-    const answer = document.createElement("p");
+    const answer = document.createElement("button");
     answer.setAttribute("onClick", "checkAnswer(this)");
     answer.classList.add("answer-option");
     answer.textContent = decodeHTML(answers[i]);
