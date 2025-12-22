@@ -196,7 +196,7 @@ body {
   font-weight: 400;
   letter-spacing: 0.4em;
   text-transform: uppercase;
-  opacity: 0.5;
+  opacity: 0.8;
 }
 
 #title-screen-container main {
@@ -242,19 +242,24 @@ body {
   padding: 2rem;
 }
 
-/* Question number and points */
-#question-container > p:first-child,
-#question-container > p:nth-child(2) {
-  font-size: 0.9rem;
+/* Extra info (question number + points) */
+.extra-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.2rem;
   letter-spacing: 0.2em;
-  text-transform: uppercase;
-  opacity: 0.5;
+}
+
+.extra-info p {
+  margin: 0;
 }
 
 .question-number,
 .points {
   font-weight: 600;
-  opacity: 1;
 }
 
 /* The question itself */
@@ -297,31 +302,57 @@ body {
   transform: translateY(-2px);
 }
 
-/* Feedback messages */
+/* Correct answer styling */
+.answer-option.correct {
+  background: #d4edda;
+  border: 2px solid #28a745;
+  color: #155724;
+}
+
+.answer-option.correct::before {
+  content: "✓ ";
+}
+
+/* Wrong answer styling */
+.answer-option.wrong {
+  background: #f8d7da;
+  border: 2px solid #dc3545;
+  color: #721c24;
+}
+
+.answer-option.wrong::before {
+  content: "✗ ";
+}
+
+/* Dim other answers after selection */
+.answer-option.dimmed {
+  opacity: 0.4;
+}
+
+/* Feedback section - fixed at bottom */
+.user-choice,
+.real-answer,
+.continue-button {
+  position: absolute;
+}
+
 .user-choice {
+  bottom: 180px;
   font-size: 1.3rem;
   font-weight: 500;
   letter-spacing: 0.1em;
-  min-height: 1.5rem;
-}
-
-.user-choice:empty {
-  display: none;
 }
 
 .real-answer {
+  bottom: 140px;
   font-size: 1rem;
   font-style: italic;
   opacity: 0.7;
-  min-height: 1.2rem;
-}
-
-.real-answer:empty {
-  display: none;
 }
 
 /* Continue / Next question button */
 .continue-button {
+  bottom: 80px;
   font-family: "Cormorant Garamond", serif;
   font-size: 1rem;
   letter-spacing: 0.25em;
@@ -332,7 +363,6 @@ body {
   color: #2a2a2a;
   cursor: pointer;
   transition: all 0.4s ease;
-  margin-top: 1rem;
 }
 
 .continue-button:hover {
@@ -397,50 +427,4 @@ body {
 .to-homepage:hover {
   background: #2a2a2a;
   color: #f9f8f4;
-}
-
-/* Fix feedback pushing question up */
-.user-choice,
-.real-answer,
-.continue-button {
-  position: absolute;
-}
-
-.user-choice {
-  bottom: 180px;
-}
-
-.real-answer {
-  bottom: 140px;
-}
-
-.continue-button {
-  bottom: 80px;
-}
-
-/* Correct answer styling */
-.answer-option.correct {
-  background: #d4edda;
-  border: 2px solid #28a745;
-  color: #155724;
-}
-
-.answer-option.correct::before {
-  content: "✓ ";
-}
-
-/* Wrong answer styling */
-.answer-option.wrong {
-  background: #f8d7da;
-  border: 2px solid #dc3545;
-  color: #721c24;
-}
-
-.answer-option.wrong::before {
-  content: "✗ ";
-}
-
-/* Dim other answers after selection */
-.answer-option.dimmed {
-  opacity: 0.4;
 }
