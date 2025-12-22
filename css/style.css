@@ -287,7 +287,7 @@ body {
   font-size: 1.1rem;
   letter-spacing: 0.05em;
   padding: 1rem 1.8rem;
-  background: rgba(255, 255, 255, 0.7);
+  background: white;
   border: 1px solid #2a2a2a;
   color: #2a2a2a;
   cursor: pointer;
