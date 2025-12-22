@@ -8,19 +8,64 @@
   </head>
 
   <body>
-    <div id="title-screen-container">
-      <header>
-        <h1>Epic trivia game</h1>
-        <p>Test your general knowledge</p>
-      </header>
-      <main>
-        <h2>Choose your game mode</h2>
-        <button onclick="startGame()">Classic</button>
-        <button onclick="startGame('easy')">Easy</button>
-        <button onclick="startGame('medium')">Medium</button>
-        <button onclick="startGame('hard')">Hard</button>
-      </main>
+    <div class="intro-container" id="introContainer">
+      <!-- ARCH (if separate) -->
+      <img
+        src="img/värav.png"
+        class="gate layer layer-arch"
+        data-speed="0.03" />
+
+      <!-- LEFT SIDE (back to front) -->
+      <img
+        src="img/lill7.png"
+        class="lill-7 layer layer-left layer-back"
+        data-speed="0.02" />
+      <img
+        src="img/lill6.png"
+        class="lill-6 layer layer-left layer-back"
+        data-speed="0.03" />
+      <img
+        src="img/lill1.png"
+        class="lill-1 layer layer-left layer-front"
+        data-speed="0.05" />
+      <img
+        src="img/lill3.png"
+        class="lill-3 layer layer-left layer-front"
+        data-speed="0.06" />
+
+      <!-- RIGHT SIDE (back to front) -->
+      <img
+        src="img/lill5.png"
+        class="lill-5 layer layer-right layer-back"
+        data-speed="0.02" />
+      <img
+        src="img/lill4.png"
+        class="lill-4 layer layer-right layer-mid"
+        data-speed="0.04" />
+      <img
+        src="img/lill2.png"
+        class="lill-2 layer layer-right layer-front"
+        data-speed="0.06" />
+
+      <!-- TITLE CONTENT -->
+      <div class="title-content">
+        <h1>Trivia</h1>
+        <p>Garden of Knowledge</p>
+        <button class="enter-btn" onclick="openGarden()">Enter</button>
+      </div>
+
+      <!-- GAME MENU (inside intro-container so CSS works) -->
+      <div id="title-screen-container">
+        <main>
+          <h2>Choose your game mode</h2>
+          <button onclick="startGame()">Classic</button>
+          <button onclick="startGame('easy')">Easy</button>
+          <button onclick="startGame('medium')">Medium</button>
+          <button onclick="startGame('hard')">Hard</button>
+        </main>
+      </div>
     </div>
+    <!-- intro-container ends here -->
 
     <div id="question-container">
       <p>Number of question: <span class="question-number"></span> out of 10</p>

@@ -2,6 +2,165 @@
   margin: 0;
 }
 
+body {
+  background-color: white;
+  color: black;
+}
+
+.layer {
+  position: absolute;
+  pointer-events: none;
+  transition: transform 2s cubic-bezier(0.4, 0, 0.2, 1), opacity 1.2s ease;
+}
+
+.lill-1,
+.lill-7,
+.lill-6,
+.lill-3 {
+  left: 0;
+}
+
+.lill-3 {
+  bottom: 0;
+}
+
+.lill-4,
+.lill-5,
+.lill-2 {
+  right: 0;
+}
+
+/* ========== TITLE CONTENT (Trivia + Enter button) ========== */
+.title-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 10;
+  transition: opacity 0.8s ease;
+}
+
+.layer-arch {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  height: fit-content;
+  z-index: -1;
+}
+
+.title-content h1 {
+  font-size: 4rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: #2a2a2a;
+  margin-bottom: 0.3rem;
+}
+
+.title-content p {
+  font-size: 1.3rem;
+  font-style: italic;
+  letter-spacing: 0.2em;
+  color: #2a2a2a;
+  opacity: 0.6;
+  margin-bottom: 2.5rem;
+}
+
+.enter-btn {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  padding: 1rem 2.5rem;
+  background: transparent;
+  border: 1px solid #2a2a2a;
+  color: #2a2a2a;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.enter-btn:hover {
+  background: #2a2a2a;
+  color: #f4f1eb;
+}
+
+/* Menu hidden by default */
+#title-screen-container {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1s ease;
+  transition-delay: 2s; /* waits for botanicals to move first */
+}
+
+/* Menu appears when opened */
+.intro-container.opened #title-screen-container {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ==========================================================
+   OPENED STATE - WHAT HAPPENS WHEN YOU CLICK "ENTER"
+   ========================================================== */
+
+/* Title fades out */
+.intro-container.opened .title-content {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.intro-container.opened .layer-arch {
+  transform: scale(1.5);
+  transition: transform 2s ease;
+}
+/* Left images slide left */
+.intro-container.opened .lill-7 {
+  transform: translateX(-5%) rotate(-5deg);
+  transition-delay: 0s;
+}
+
+.intro-container.opened .lill-6 {
+  transform: translateX(-10%) rotate(-3deg);
+  transition-delay: 0.05s;
+}
+
+.intro-container.opened .lill-1 {
+  transform: translateX(-25%) rotate(-12deg);
+  transition-delay: 0.1s;
+}
+
+.intro-container.opened .lill-3 {
+  transform: translate(-40%, 50%) rotate(-25deg);
+  transition-delay: 0.15s;
+}
+
+/* Right images slide right */
+.intro-container.opened .lill-5 {
+  transform: translateX(5%) rotate(3deg);
+  transition-delay: 0s;
+}
+
+.intro-container.opened .lill-4 {
+  transform: translateX(10%) rotate(12deg);
+  transition-delay: 0.08s;
+}
+
+.intro-container.opened .lill-2 {
+  transform: translate(40%, 50%) rotate(25deg);
+  transition-delay: 0.15s;
+}
+
+.intro-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 #title-screen-container {
   width: 100vw;
   height: 100vh;

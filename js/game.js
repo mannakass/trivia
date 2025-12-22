@@ -5,6 +5,15 @@ let answers = [];
 let questionNumber = 1;
 let points = 0;
 
+/* ========== OPEN/CLOSE GARDEN ========== */
+function openGarden() {
+  document.getElementById("introContainer").classList.add("opened");
+}
+
+function closeGarden() {
+  document.getElementById("introContainer").classList.remove("opened");
+}
+
 async function startGame(difficulty) {
   await fetchQuestions(difficulty);
   showQuestion();
