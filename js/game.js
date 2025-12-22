@@ -1,7 +1,14 @@
+/* VASTA NUMBRITEGA KLAVIATUURIL ET OLEKS ACCESSIBLE */
+
 let questionIndex = 0;
 let answers = [];
 let questionNumber = 1;
 let points = 0;
+
+async function startGame(difficulty) {
+  await fetchQuestions(difficulty);
+  showQuestion();
+}
 
 function showQuestion() {
   /* hide and show containers accordingly */
@@ -14,6 +21,8 @@ function showQuestion() {
     showResults();
     return;
   }
+
+  console.log(triviaData[questionIndex].difficulty);
   /* get and create needed elements */
   document.querySelector(".user-choice").textContent = "";
   document.querySelector(".real-answer").textContent = "";
@@ -83,8 +92,4 @@ function toHomepage() {
   document.querySelector("#question-container").style.display = "none";
   document.querySelector("#results-container").style.display = "none";
   document.getElementById("title-screen-container").style.display = "flex";
-  fetchQuestions();
 }
-
-// Fetch on page load
-fetchQuestions();
