@@ -8,7 +8,7 @@ This project is a web-based trivia game featuring vintage botanical illustration
 
 ## Link to the game
 
-(Click here)[https://trivia-seven-theta.vercel.app/]
+[Click here](https://trivia-seven-theta.vercel.app/)
 
 ## API
 
