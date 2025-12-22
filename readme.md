@@ -6,6 +6,10 @@ A trivia game with a botanical theme, built as a school assignment focusing on A
 
 This project is a web-based trivia game featuring vintage botanical illustrations. Players answer 10 multiple-choice questions and earn points based on their answers.
 
+## Link to the game
+
+(Click here)[https://trivia-seven-theta.vercel.app/]
+
 ## API
 
 This project uses the [Open Trivia Database (OpenTDB)](https://opentdb.com/) - a free, user-contributed trivia question database.
