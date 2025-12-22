@@ -37,7 +37,7 @@ function showQuestion() {
   const question = document.querySelector(".question");
   const answersDiv = document.querySelector(".answers-container");
 
-  /* clear data */
+  /* clear data from previous question */
   answers = [];
   question.textContent = "";
   answersDiv.innerHTML = "";
@@ -55,6 +55,7 @@ function showQuestion() {
   for (i = 0; i < 4; i++) {
     const answer = document.createElement("p");
     answer.setAttribute("onClick", "checkAnswer(this)");
+    answer.classList.add("answer-option");
     answer.textContent = decodeHTML(answers[i]);
 
     answersDiv.appendChild(answer);
@@ -66,17 +67,26 @@ function showQuestion() {
 function checkAnswer(element) {
   const userChoice = element.textContent;
   document.querySelector(".continue-button").removeAttribute("hidden");
+  console.log(document.querySelectorAll(".answer-option"));
 
-  if (triviaData[questionIndex].correct_answer === userChoice) {
+  /* remove the option to click on any other answer after you're already clicked on sth */
+  document.querySelectorAll(".answer-option").forEach((el) => {
+    el.removeAttribute("onclick");
+  });
+
+  /* If answer is correct */
+  if (decodeHTML(triviaData[questionIndex].correct_answer) === userChoice) {
     document.querySelector(".user-choice").textContent = "Correct answer!";
     points += 100;
     document.querySelector(".points").textContent = points;
     console.log("correct answer");
+    /* If answer is not correct */
   } else {
     document.querySelector(".user-choice").textContent = "Wrong answer!";
     document.querySelector(".real-answer").textContent =
-      "Correct answer is: " + triviaData[questionIndex].correct_answer;
-    triviaData[questionIndex].correct_answer;
+      "Correct answer is: " +
+      decodeHTML(triviaData[questionIndex].correct_answer);
+    //triviaData[questionIndex].correct_answer;
     points -= 50;
     document.querySelector(".points").textContent = points;
     console.log("incorrect answer");
