@@ -4,7 +4,7 @@ A trivia game with a botanical theme, built as a school assignment focusing on A
 
 ## About
 
-This project is a web-based trivia game featuring vintage botanical illustrations. Players answer 10 multiple-choice questions and earn points based on their answers.
+This project is a web-based trivia game featuring vintage botanical illustrations. Player answers 10 multiple-choice questions and earns points based on their answers.
 
 ## Link to the game
 
@@ -31,15 +31,6 @@ https://opentdb.com/api.php?amount=50&type=multiple
 - HTML5
 - CSS (animations, transitions, flexbox)
 - Vanilla JavaScript (async/await, fetch API, DOM manipulation)
-
-## How to Run
-
-1. Clone the repository
-2. Open `index.html` in a browser
-3. Click "Enter" to start
-4. Choose a difficulty
-5. Answer 10 questions
-6. See your final score
 
 ## Design
 

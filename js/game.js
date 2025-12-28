@@ -5,7 +5,7 @@ let answers = [];
 let questionNumber = 1;
 let points = 0;
 
-/* ========== OPEN/CLOSE GARDEN ========== */
+/* open and close garden scene */
 function openGarden() {
   document.getElementById("introContainer").classList.add("opened");
 }
@@ -14,6 +14,7 @@ function closeGarden() {
   document.getElementById("introContainer").classList.remove("opened");
 }
 
+/* start game (by choosing difficulty) */
 async function startGame(difficulty) {
   document.getElementById("title-screen-container").style.display = "none";
 
@@ -25,6 +26,7 @@ function showQuestion() {
   /* hide and show containers accordingly */
   document.querySelector("#question-container").style.display = "flex";
   document.querySelector("#results-container").style.display = "none";
+  document.querySelector(".keyboard-hint").style.display = "none";
 
   if (questionNumber === 10) {
     document.querySelector(".continue-button").textContent = "Finish";
@@ -66,6 +68,7 @@ function showQuestion() {
     const answer = document.createElement("button");
     answer.setAttribute("onClick", "checkAnswer(this)");
     answer.classList.add("answer-option");
+    answer.setAttribute("data-number", i + 1);
     answer.textContent = decodeHTML(answers[i]);
 
     answersDiv.appendChild(answer);
@@ -79,6 +82,7 @@ function checkAnswer(element) {
   const correctAnswer = decodeHTML(triviaData[questionIndex].correct_answer);
 
   document.querySelector(".continue-button").removeAttribute("hidden");
+  document.querySelector(".keyboard-hint").style.display = "block";
 
   // Remove click from all answers
   document.querySelectorAll(".answer-option").forEach((el) => {
@@ -114,6 +118,31 @@ function checkAnswer(element) {
   questionIndex++;
   questionNumber++;
 }
+
+/* keyboard controls */
+document.addEventListener("keydown", function (e) {
+  // Number keys 1-4 for answers
+  if (e.key >= "1" && e.key <= "4") {
+    const answerButtons = document.querySelectorAll(".answer-option");
+    const index = parseInt(e.key) - 1;
+
+    // Check if button exists and is clickable
+    if (answerButtons[index] && answerButtons[index].hasAttribute("onclick")) {
+      answerButtons[index].click();
+    }
+  }
+
+  // Space bar for next question
+  if (e.code === "Space") {
+    const continueBtn = document.querySelector(".continue-button");
+
+    // Only click if button is visible (not hidden)
+    if (continueBtn && !continueBtn.hasAttribute("hidden")) {
+      e.preventDefault(); // Prevent page scroll
+      continueBtn.click();
+    }
+  }
+});
 
 function showResults() {
   document.querySelector("#question-container").style.display = "none";
