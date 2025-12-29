@@ -83,7 +83,7 @@ body {
   color: #f9f8f4;
 }
 
-/* ========== ARCH ========== */
+/* arch */
 .layer-arch {
   position: absolute;
   top: 0;
@@ -96,7 +96,7 @@ body {
   transition: transform 2s ease;
 }
 
-/* ========== MENU (hidden by default) ========== */
+/* selection menu (hidden by default) */
 #title-screen-container {
   opacity: 0;
   pointer-events: none;
@@ -104,7 +104,7 @@ body {
   transition-delay: 1.5s;
 }
 
-/* Menu appears when opened */
+/* menu appears when has class opened */
 .intro-container.opened #title-screen-container {
   opacity: 1;
   pointer-events: auto;
@@ -162,7 +162,7 @@ body {
   transition-delay: 0.15s;
 }
 
-/* ========== INTRO CONTAINER ========== */
+/* intro container */
 .intro-container {
   position: fixed;
   top: 0;
@@ -176,7 +176,7 @@ body {
   z-index: 1;
 }
 
-/* ========== TITLE SCREEN CONTAINER (game modes) ========== */
+/* game modes */
 #title-screen-container {
   position: absolute;
   top: 0;
@@ -223,9 +223,7 @@ body {
   color: #f9f8f4;
 }
 
-/* ==========================================================
-   QUESTION CONTAINER
-   ========================================================== */
+/* question container  */
 #question-container {
   position: fixed;
   top: 0;
@@ -294,6 +292,27 @@ body {
   transition: all 0.3s ease;
   min-width: 180px;
   text-align: center;
+}
+
+/* Answer numbers */
+.answer-option {
+  position: relative;
+}
+
+.answer-option::after {
+  content: attr(data-number);
+  position: absolute;
+  top: -12px;
+  left: -12px;
+  width: 28px;
+  height: 28px;
+  background: #2a2a2a;
+  color: #f9f8f4;
+  border-radius: 50%;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .answer-option:hover {
@@ -372,6 +391,27 @@ body {
 
 .continue-button[hidden] {
   display: none;
+}
+
+/* Hint text under continue button */
+.keyboard-hint {
+  position: absolute;
+  bottom: 45px;
+  font-size: 0.85rem;
+  opacity: 0.5;
+  font-style: italic;
+  display: none; /* Hidden by default */
+}
+
+/* Hide keyboard stuff on mobile */
+@media (max-width: 768px) {
+  .answer-option::after {
+    display: none;
+  }
+
+  .keyboard-hint {
+    display: none;
+  }
 }
 
 /* ==========================================================
@@ -505,47 +545,5 @@ body {
 
   .intro-container.opened .mobile-gate {
     transform: translateX(-50%) scale(1.3);
-  }
-}
-
-/* Answer numbers */
-.answer-option {
-  position: relative;
-}
-
-.answer-option::after {
-  content: attr(data-number);
-  position: absolute;
-  top: -10px;
-  left: -10px;
-  width: 24px;
-  height: 24px;
-  background: #2a2a2a;
-  color: #f9f8f4;
-  border-radius: 50%;
-  font-size: 0.8rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Hint text under continue button */
-.keyboard-hint {
-  position: absolute;
-  bottom: 45px;
-  font-size: 0.85rem;
-  opacity: 0.5;
-  font-style: italic;
-  display: none; /* Hidden by default */
-}
-
-/* Hide keyboard stuff on mobile */
-@media (max-width: 768px) {
-  .answer-option::after {
-    display: none;
-  }
-
-  .keyboard-hint {
-    display: none;
   }
 }
