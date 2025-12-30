@@ -191,6 +191,34 @@ body {
   z-index: 20;
 }
 
+/* Game mode button numbers */
+#title-screen-container button {
+  position: relative;
+}
+
+#title-screen-container button::after {
+  content: attr(data-number);
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: 24px;
+  height: 24px;
+  background: #2a2a2a;
+  color: #f9f8f4;
+  border-radius: 50%;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Hide on mobile */
+@media (max-width: 768px) {
+  #title-screen-container button::after {
+    display: none;
+  }
+}
+
 #title-screen-container h2 {
   font-size: 1rem;
   font-weight: 400;

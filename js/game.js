@@ -119,27 +119,60 @@ function checkAnswer(element) {
   questionNumber++;
 }
 
-/* keyboard controls */
+/* KEYBOARD CONTROLS */
 document.addEventListener("keydown", function (e) {
-  // Number keys 1-4 for answers
+  // Number keys 1-4
   if (e.key >= "1" && e.key <= "4") {
-    const answerButtons = document.querySelectorAll(".answer-option");
     const index = parseInt(e.key) - 1;
 
-    // Check if button exists and is clickable
-    if (answerButtons[index] && answerButtons[index].hasAttribute("onclick")) {
-      answerButtons[index].click();
+    // Check if question container is visible - answer buttons
+    const questionContainer = document.getElementById("question-container");
+    if (questionContainer.style.display === "flex") {
+      const answerButtons = document.querySelectorAll(".answer-option");
+      if (
+        answerButtons[index] &&
+        answerButtons[index].hasAttribute("onclick")
+      ) {
+        answerButtons[index].click();
+      }
+      return; // Stop here, don't check mode buttons
+    }
+
+    // Check if title screen is visible - mode buttons
+    const titleScreen = document.getElementById("title-screen-container");
+    if (
+      titleScreen.style.display !== "none" &&
+      titleScreen.style.opacity !== "0"
+    ) {
+      const modeButtons = document.querySelectorAll(
+        "#title-screen-container main button"
+      );
+      if (modeButtons[index]) {
+        modeButtons[index].click();
+      }
+      return;
     }
   }
 
-  // Space bar for next question
+  // Space bar for continue / go home
   if (e.code === "Space") {
-    const continueBtn = document.querySelector(".continue-button");
+    e.preventDefault();
 
-    // Only click if button is visible (not hidden)
+    // Go to home button - check FIRST
+    const homeBtn = document.querySelector(".to-homepage");
+    if (homeBtn) {
+      const resultsContainer = document.getElementById("results-container");
+      if (resultsContainer.style.display === "flex") {
+        homeBtn.click();
+        return;
+      }
+    }
+
+    // Next question button
+    const continueBtn = document.querySelector(".continue-button");
     if (continueBtn && !continueBtn.hasAttribute("hidden")) {
-      e.preventDefault(); // Prevent page scroll
       continueBtn.click();
+      return;
     }
   }
 });
