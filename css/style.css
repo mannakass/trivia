@@ -191,6 +191,14 @@ body {
   z-index: 20;
 }
 
+#title-screen-container nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  width: 100%;
+  max-width: 330px;
+}
+
 /* Game mode button numbers */
 #title-screen-container button {
   position: relative;

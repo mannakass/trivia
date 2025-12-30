@@ -3,99 +3,120 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Trivia</title>
+    <title>Trivia - Garden of Knowledge</title>
     <link rel="stylesheet" href="css/style.css" />
   </head>
 
   <body>
     <div class="intro-container" id="introContainer">
-      <!-- arch -->
+      <!-- Decorative images - empty alt because they're decorative -->
       <img
         src="img/värav.png"
         class="gate layer layer-arch"
-        data-speed="0.03" />
+        data-speed="0.03"
+        alt="" />
 
       <!-- LEFT SIDE (back to front) -->
       <img
         src="img/lill7.png"
         class="lill-7 layer layer-left layer-back"
-        data-speed="0.02" />
+        data-speed="0.02"
+        alt="" />
       <img
         src="img/lill6.png"
         class="lill-6 layer layer-left layer-back"
-        data-speed="0.03" />
+        data-speed="0.03"
+        alt="" />
       <img
         src="img/lill1.png"
         class="lill-1 layer layer-left layer-front"
-        data-speed="0.05" />
+        data-speed="0.05"
+        alt="" />
       <img
         src="img/lill3.png"
         class="lill-3 layer layer-left layer-front"
-        data-speed="0.06" />
+        data-speed="0.06"
+        alt="" />
 
       <!-- RIGHT SIDE (back to front) -->
       <img
         src="img/lill5.png"
         class="lill-5 layer layer-right layer-back"
-        data-speed="0.02" />
+        data-speed="0.02"
+        alt="" />
       <img
         src="img/lill4.png"
         class="lill-4 layer layer-right layer-mid"
-        data-speed="0.04" />
+        data-speed="0.04"
+        alt="" />
       <img
         src="img/lill2.png"
         class="lill-2 layer layer-right layer-front"
-        data-speed="0.06" />
+        data-speed="0.06"
+        alt="" />
 
       <!-- MOBILE IMAGES -->
-      <img src="img/mobile-gate.png" class="mobile-layer mobile-gate" />
-      <img src="img/mobile-lill1.png" class="mobile-layer mobile-lill1" />
-      <img src="img/mobile-lill2.png" class="mobile-layer mobile-lill2" />
-      <img src="img/mobile-lill3.png" class="mobile-layer mobile-lill3" />
-      <img src="img/mobile-lill4.png" class="mobile-layer mobile-lill4" />
+      <img src="img/mobile-gate.png" class="mobile-layer mobile-gate" alt="" />
+      <img
+        src="img/mobile-lill1.png"
+        class="mobile-layer mobile-lill1"
+        alt="" />
+      <img
+        src="img/mobile-lill2.png"
+        class="mobile-layer mobile-lill2"
+        alt="" />
+      <img
+        src="img/mobile-lill3.png"
+        class="mobile-layer mobile-lill3"
+        alt="" />
+      <img
+        src="img/mobile-lill4.png"
+        class="mobile-layer mobile-lill4"
+        alt="" />
 
       <!-- TITLE CONTENT -->
-      <div class="title-content">
+      <header class="title-content">
         <h1>Trivia</h1>
         <p>Garden of Knowledge</p>
         <button class="enter-btn" onclick="openGarden()">Enter</button>
-      </div>
+      </header>
 
-      <!-- GAME MENU (inside intro-container so CSS works) -->
-      <div id="title-screen-container">
-        <main>
-          <h2>Choose your game mode</h2>
+      <!-- GAME MENU -->
+      <section id="title-screen-container" aria-label="Game mode selection">
+        <h2>Choose your game mode</h2>
+        <nav class="game-modes">
           <button onclick="startGame()" data-number="1">Classic</button>
           <button onclick="startGame('easy')" data-number="2">Easy</button>
           <button onclick="startGame('medium')" data-number="3">Medium</button>
           <button onclick="startGame('hard')" data-number="4">Hard</button>
-        </main>
-      </div>
+        </nav>
+      </section>
     </div>
     <!-- intro-container ends here -->
 
-    <div id="question-container">
+    <main id="question-container" aria-label="Question">
       <div class="extra-info">
-        <p>
-          Number of question: <span class="question-number"></span> out of 10
-        </p>
+        <p>Question: <span class="question-number"></span> of 10</p>
         <p>Points: <span class="points"></span></p>
       </div>
-      <p class="question"></p>
-      <div class="answers-container"></div>
-      <p class="user-choice"></p>
-      <p class="real-answer"></p>
+      <h2 class="question"></h2>
+      <div
+        class="answers-container"
+        role="group"
+        aria-label="Answer options"></div>
+      <p class="user-choice" aria-live="polite"></p>
+      <p class="real-answer" aria-live="polite"></p>
       <button class="continue-button" onclick="showQuestion()" hidden>
         Next question
       </button>
       <span class="keyboard-hint">or press Space to continue</span>
-    </div>
+    </main>
 
-    <div id="results-container">
+    <section id="results-container" aria-label="Results">
       <h1>You're done!</h1>
       <p>Your final points: <span class="final-points"></span></p>
       <button class="to-homepage" onclick="toHomepage()">Go to home</button>
-    </div>
+    </section>
 
     <script src="js/api.js"></script>
     <script src="js/utils.js"></script>
