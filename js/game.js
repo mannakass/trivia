@@ -80,6 +80,11 @@ function showQuestion() {
   }
 
   question.textContent = decodeHTML(triviaData[questionIndex].question);
+  announce(
+    `Question ${questionNumber} of 10: ${decodeHTML(
+      triviaData[questionIndex].question
+    )}`
+  );
 }
 
 function checkAnswer(element) {
@@ -105,16 +110,14 @@ function checkAnswer(element) {
 
   // Check if user was right or wrong
   if (correctAnswer === userChoice) {
-    /*     document.querySelector(".user-choice").textContent = "Correct!"; */
+    announce("Correct!");
     points += 100;
     document.querySelector(".points").textContent = points;
     console.log("correct answer");
   } else {
+    announce(`Wrong! The correct answer was ${correctAnswer}`);
     element.classList.remove("dimmed");
     element.classList.add("wrong");
-    /*     document.querySelector(".user-choice").textContent = "Wrong!";
-    document.querySelector(".real-answer").textContent =
-      "Correct answer: " + correctAnswer; */
     points -= 50;
     document.querySelector(".points").textContent = points;
     console.log("incorrect answer");
@@ -183,6 +186,7 @@ document.addEventListener("keydown", function (e) {
 });
 
 function showResults() {
+  announce(`Game complete! Your final score is ${points} points.`);
   document.querySelector("#question-container").style.display = "none";
   document.querySelector("#results-container").style.display = "flex";
   document.getElementById("title-screen-container").style.display = "none";
@@ -193,4 +197,12 @@ function toHomepage() {
   document.querySelector("#question-container").style.display = "none";
   document.querySelector("#results-container").style.display = "none";
   document.getElementById("title-screen-container").style.display = "flex";
+}
+
+function announce(message) {
+  const announcer = document.getElementById("sr-announcer");
+  announcer.textContent = "";
+  setTimeout(() => {
+    announcer.textContent = message;
+  }, 500);
 }

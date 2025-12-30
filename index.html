@@ -100,7 +100,7 @@
         <p>Question: <span class="question-number"></span> of 10</p>
         <p>Points: <span class="points"></span></p>
       </div>
-      <h2 class="question"></h2>
+      <h2 class="question" aria-live="polite"></h2>
       <div
         class="answers-container"
         role="group"
@@ -122,5 +122,6 @@
     <script src="js/api.js"></script>
     <script src="js/utils.js"></script>
     <script src="js/game.js"></script>
+    <div id="sr-announcer" aria-live="assertive" class="sr-only"></div>
   </body>
 </html>
