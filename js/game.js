@@ -16,6 +16,11 @@ function closeGarden() {
 
 /* start game (by choosing difficulty) */
 async function startGame(difficulty) {
+  const modeName = difficulty
+    ? difficulty.charAt(0).toUpperCase() + difficulty.slice(1)
+    : "Classic";
+  document.querySelector(".current-mode").textContent = modeName;
+
   document.getElementById("title-screen-container").style.display = "none";
 
   await fetchQuestions(difficulty);
