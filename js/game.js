@@ -145,7 +145,7 @@ document.addEventListener("keydown", function (e) {
       titleScreen.style.opacity !== "0"
     ) {
       const modeButtons = document.querySelectorAll(
-        "#title-screen-container main button"
+        "#title-screen-container nav button"
       );
       if (modeButtons[index]) {
         modeButtons[index].click();
